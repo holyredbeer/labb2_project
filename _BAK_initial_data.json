@@ -1,0 +1,12 @@
+[
+  {
+  	"model": "project_app.project",
+  	"pk": 1,
+  	"fields": {
+  		"name": "Testproj",
+  		"description": "Nisse",
+  		"start_date": 2010-05-23,
+  		"end_date": 2012-05-23,
+  	}
+  }
+]

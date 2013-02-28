@@ -1,0 +1,16 @@
+<h1>Lista alla projekt</h1>
+
+{% for project in projects %}
+	<h2>{{ project.name}} <h2/>
+	<h3>Description:</h3>
+		<span>{{ project.description }}</span>
+	<h3>Added date:</h3>
+		<span>{{ project.date_added|date:"Y-m-d" }}</span>
+	<h3>Added by user:</h3>
+		<span>{{ project.added_by_user }}</span>
+
+		{% for ticket in project.tickets %}
+			{{ ticket.name }}
+		{% endfor %}
+
+{% endfor %}
