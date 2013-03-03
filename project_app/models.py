@@ -1,21 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import User
 # from djangop.utils.encoding import iri_to_uri
-# from django.forms import Modelforms
+from django.forms import ModelForm
+from django import forms
 
 
 class Project(models.Model):
-	added_by_user = models.ForeignKey(User, related_name='projects')
-	users = models.ManyToManyField(User)
 	name = models.CharField(max_length = 50)
 	description = models.TextField()
-	start_date = models.DateTimeField('date result published')
-	end_date = models.DateTimeField('date result published')
+	start_date = models.DateTimeField('Start date')
+	end_date = models.DateTimeField('End date')
 	date_added = models.DateField()
 	date_updated = models.DateField()
+	added_by_user = models.ForeignKey(User)
+	users = models.ManyToManyField(User, related_name='projects')
 
 	def __unicode__(self):
 		return self.name
+
+	def owned_by_user(self, user):
+		return self.added_by_user == user
 
 
 class Status(models.Model):
@@ -40,4 +44,17 @@ class Ticket(models.Model):
 		return self.name
 
 
-# class ProjectModel(ModelForm):
+class ProjectForm(ModelForm):
+	class Meta:
+		model = Project
+		exclude = ('date_added', 'date_updated', 'added_by_user')
+
+class TicketForm(ModelForm):
+	class Meta:
+		model = Ticket
+		exclude = ('date_added', 'date_updated', 'project', 'user')
+
+
+class LoginForm(forms.Form):
+	username = forms.CharField(max_length = 20)
+	password = forms.CharField(max_length = 20, widget = forms.PasswordInput)

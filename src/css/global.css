@@ -1,0 +1,77 @@
+body {
+	background-color: #ddaa88 !important;
+}
+
+.container > .content {
+	float: left;
+	min-width: 600px;
+	max-width: 600px;
+	min-height: 500px;
+	background-color: #eee;
+	padding: 30px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	   -moz-border-radius: 10px 10px 10px 10px;
+	        border-radius: 10px 10px 10px 10px;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+	   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+	        box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+.container > .content2 {
+	float: right;
+	width: 200px;
+	min-height: 200px;
+	background-color: #eee;
+	padding: 30px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	   -moz-border-radius: 10px 10px 10px 10px;
+	        border-radius: 10px 10px 10px 10px;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+	   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+	        box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+#project_area {
+	border-radius: 5px;
+	background: #ddd;
+	width: 92%;
+	min-height: 390px;
+	margin-top: 30px;
+	padding: 25px 25px 25px 25px;
+	position: relative;
+}
+
+#user_info {
+	float: right;
+	font-size: 13px;
+}
+
+.login_container {
+	background-color: #eee;
+	margin-top: 140px;
+	width: 292px;
+	height: 260px;
+	border-radius: 15px;
+}
+
+.login_container {
+  margin-right: auto;
+  margin-left: auto;
+  *zoom: 1;
+}
+
+.login_container:before,
+.login_container:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.login_container:after {
+  clear: both;
+}
+
+#login_div {
+	margin: 0px auto;
+	margin-left: 55px;
+}

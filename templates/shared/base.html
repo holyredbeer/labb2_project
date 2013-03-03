@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      {% block title %}
+        AMPTA - the Django version
+      {% endblock %}
+      {% block stylesheet %}
+          <link rel="stylesheet" type="text/css" href="global.css" />
+      {% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/global.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top">
+      <nav class="navbar-inner">
+        <div class="container">
+          <!-- Your site name for the upper left corner of the site -->
+
+          <!-- Start of the nav bar content -->
+          <div class="nav-collapse"><!-- Other nav bar content -->
+            <ul class="nav">
+              <a class="brand">AMPTA</a>
+              <li class><a href="{% url home %}">Home</a></li>
+              <li class="active"><a href="{% url project_list %}">All projects</a></li>
+              <li class><a href="{% url project_add %}">Create project</a></li>
+            </ul>
+          </div>
+          {% if user.is_authenticated %}
+            <span class="brand" id="user_info"><strong>Logged in as:</strong> {{ user }} <a href="{% url logout %}">| Logout</a></span>
+          {% else %}
+            <span class="brand" id="user_info"><a href="{% url login %}">Login</a></span>
+          {% endif %}
+        </div>
+      </nav>
+    </header>
+    <div id="main" role="main">
+      <div class="container">
+        <div class="content">
+              {% block content %}
+                  <h1>Add your content!</h1>
+              {% endblock %}
+          <footer>
+          </footer>
+        </div>
+        <div class="content2">
+          <h5>Your projects</h5>
+          {% for project in user.projects_set.all %}
+            {{ project }}<br/>
+          {% endfor %}<br/>
+        </div>
+      </div> <!--! end of .container -->
+    </div> <!--! end of #main -->
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/external.js"></script>
+  </body>
+</html>

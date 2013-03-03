@@ -1,0 +1,24 @@
+{% extends "shared/login_base.html" %}
+
+{% block title %}
+  Login
+{% endblock %}
+
+
+{% block content %}
+  
+  <div id="login_div">
+    <div class="content">
+      <div class="row">
+        <div class="login-form">
+          <h3>Login</h3>
+          <form action="{{login}}" method="POST"> {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn" value="Sign in" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

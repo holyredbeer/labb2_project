@@ -1,0 +1,41 @@
+{% extends 'shared/base.html' %}
+{% load custom_filters %}
+
+{% block title %}
+	Showing project {{project}}
+{% endblock %}
+
+{% block content %}
+	<h4>{{ project }}</h4>
+	<div id="project_area">
+
+		<p><strong>Description:<br/></strong>{{ project.description }}</p>
+
+		<p><strong>Start date:<br/></strong>{{ project.start_date }}</p>
+
+		<p><strong>End date:<br/></strong>{{ project.end_date }}</p>
+
+		<p><strong>Project admin:<br/></strong>{{ project.added_by_user }}</p>
+
+		<p><strong>Project members:</strong></p>
+		{% for member in project.users.all %}
+			{{ member.get_full_name }}<br />
+		{% endfor %}
+
+		<p><strong>Tickets:</strong></p>
+		{% for ticket in tickets %}
+			<i class="icon-tag"></i>
+			<a class="btn" href="{% url show_ticket project.id ticket.id %}">{{ ticket }}</a> ({{ ticket.status }})
+			<br/>
+		{% endfor %}<br/>
+		<p><a class="btn" href="{% url ticket_add project.id %}">Add ticket</a></p>
+		<br/>
+		{% if project|ownership:user %}
+			<p>
+				<a class="btn" href="{% url project_edit project.id %}">Edit</a>
+				<a class="btn" id="delete_link" href="{% url project_delete project.id %}">Delete</a>
+			</p>
+		{% endif %}
+	</div>
+
+{% endblock %}
