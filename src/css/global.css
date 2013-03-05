@@ -1,11 +1,34 @@
 body {
-	background-color: #ddaa88 !important;
+	background-color: #97C2D1 !important;
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+#front-img {
+	position: relative;
+	top: 232px;
+	left: -145px;
+}
+
+#welcome-text {
+	font-size: 24px;
+	position: relative;
+	top: -70px;
+	left: 50px;
+}
+
+.account_dropdown {
+	padding: 10px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  	font-size: 14px;
+  	width: 10px !important;
 }
 
 .container > .content {
+	width: 95%;
 	float: left;
-	min-width: 600px;
-	max-width: 600px;
 	min-height: 500px;
 	background-color: #eee;
 	padding: 30px;
@@ -17,18 +40,23 @@ body {
 	        box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
 
-.container > .content2 {
-	float: right;
+.helptext {
+	display: none;
+}
+
+#users-stuff {
+	margin-left: 160px;
+}
+
+.errorlist {
 	width: 200px;
-	min-height: 200px;
-	background-color: #eee;
-	padding: 30px;
-	-webkit-border-radius: 10px 10px 10px 10px;
-	   -moz-border-radius: 10px 10px 10px 10px;
-	        border-radius: 10px 10px 10px 10px;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-	   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-	        box-shadow: 0 1px 2px rgba(0,0,0,.15);
+	border: 1px solid #bbb;
+	position: relative;
+	left: -25px;
+}
+
+#id_description {
+	width: 400px;
 }
 
 #project_area {
@@ -74,4 +102,10 @@ body {
 #login_div {
 	margin: 0px auto;
 	margin-left: 55px;
+}
+
+#filter_div {
+	position: relative;
+	top: -35px;
+	left: 255px;
 }

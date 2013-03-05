@@ -1,0 +1,22 @@
+{% extends 'shared/base.html' %}
+{% load custom_filters %}
+
+{% block title %}
+	{{ headline }}
+{% endblock %}
+
+{% block content %}
+	<h4><li class="header-pos"><i class="icon-wrench"></i> {{ headline }}</h4>
+	<div id="project_area">
+
+		{% for ticket in tickets %}
+		<li>
+			<i class="icon-tag"></i> <a href="{% url show_ticket project_id=ticket.project_id ticket_id=ticket.id %}">{{ ticket }}</a>
+			({{ ticket.project }})
+			<br/>
+			<a class="btn" href="{% url ticket_edit project_id=ticket.project_id ticket_id=ticket.id %}">Edit</a>
+			<a class="btn btn-danger" id="delete_link" href="{% url ticket_delete ticket_id=ticket.id %}">Delete</a>
+		</li><br/>
+		{% endfor %}
+	</div>
+{% endblock %}

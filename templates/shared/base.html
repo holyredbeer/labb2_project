@@ -7,10 +7,10 @@
       {% block title %}
         AMPTA - the Django version
       {% endblock %}
-      {% block stylesheet %}
-          <link rel="stylesheet" type="text/css" href="global.css" />
-      {% endblock %}
     </title>
+    {% block stylesheet %}
+          <link rel="stylesheet" type="text/css" href="global.css" />
+    {% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -18,6 +18,7 @@
     <!-- Le styles -->
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <link href="/static/css/global.css" rel="stylesheet">
+    <link href="/static/css/ui/jquery-ui-1.10.1.custom.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -39,15 +40,27 @@
           <div class="nav-collapse"><!-- Other nav bar content -->
             <ul class="nav">
               <a class="brand">AMPTA</a>
-              <li class><a href="{% url home %}">Home</a></li>
-              <li class="active"><a href="{% url project_list %}">All projects</a></li>
-              <li class><a href="{% url project_add %}">Create project</a></li>
+              <li id="home" class="menu_option active"><a href="{% url home %}">Home</a></li>
+              <li id="projects" class="menu_option"><a href="{% url project_list %}">Projects</a></li>
+              <li id="new_project" class="menu_option"><a href="{% url project_add %}">New project</a></li>
+            </ul>
+
+            {% if user.is_authenticated %}
+            <!-- The drop down menu -->
+            <ul class="nav pull-right">
+              <li class="divider-vertical"></li>
+              <li class="dropdown">
+                  <a class="dropdown-toggle" href="#" data-toggle="dropdown">Signed in as: <strong> {{ user }} </strong><strong class="caret"></strong></a>
+                  <div class="dropdown-menu account_dropdown">
+                    <a href="{% url project_manage %}">Manage projects</a><br/>
+                    <a href="{% url users_tickets %}">Manage tickets</a><br/>
+                    <a href="{% url logout %}">Logout</a>
+                  <a class="dropdown-toggle" href="#" data-toggle="dropdown"><strong class="caret"></strong></a>
+                  <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                </div>
+              </li>
             </ul>
           </div>
-          {% if user.is_authenticated %}
-            <span class="brand" id="user_info"><strong>Logged in as:</strong> {{ user }} <a href="{% url logout %}">| Logout</a></span>
-          {% else %}
-            <span class="brand" id="user_info"><a href="{% url login %}">Login</a></span>
           {% endif %}
         </div>
       </nav>
@@ -61,15 +74,11 @@
           <footer>
           </footer>
         </div>
-        <div class="content2">
-          <h5>Your projects</h5>
-          {% for project in user.projects_set.all %}
-            {{ project }}<br/>
-          {% endfor %}<br/>
-        </div>
       </div> <!--! end of .container -->
     </div> <!--! end of #main -->
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.1.custom.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.validation.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/js/external.js"></script>
   </body>

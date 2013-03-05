@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 # from djangop.utils.encoding import iri_to_uri
 from django.forms import ModelForm
 from django import forms
@@ -43,16 +44,26 @@ class Ticket(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	def owned_by_user(self, user):
+		return self.user == user
+
 
 class ProjectForm(ModelForm):
 	class Meta:
 		model = Project
 		exclude = ('date_added', 'date_updated', 'added_by_user')
 
+
 class TicketForm(ModelForm):
 	class Meta:
 		model = Ticket
 		exclude = ('date_added', 'date_updated', 'project', 'user')
+
+
+class ChangeTicketStatusForm(ModelForm):
+	class Meta:
+		model = Ticket
+		exclude = ('name', 'description', 'start_date', 'end_date', 'date_added', 'date_updated', 'project', 'user')
 
 
 class LoginForm(forms.Form):

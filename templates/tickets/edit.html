@@ -1,0 +1,25 @@
+{% extends "shared/base.html" %}
+
+{% block title %}
+	Edit ticket
+{% endblock %}
+
+
+{% block content %}
+
+	{% if error_message %}
+    	<p>{{ error_message }}</p>
+	{% else %}
+
+		<h4>Edit ticket</h4>
+		<div id="project_area">
+		
+			<form action="{{ticket_edit}}" id="new_ticket" method="POST"> {% csrf_token %}
+				{{ form.as_p }}
+				<input type="submit" class="btn" value="Save" />
+			</form>
+		</div>
+
+	{% endif %}
+
+{% endblock %}

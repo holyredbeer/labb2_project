@@ -1,0 +1,20 @@
+{% extends 'shared/base.html' %}
+{% load custom_filters %}
+
+{% block title %}
+	{{ headline }}
+{% endblock %}
+
+{% block content %}
+	<h4><li class="header-pos"><i class="icon-wrench"></i> {{ headline }}</h4>
+	<div id="project_area">
+
+		{% for project in projects %}
+		<li>
+			<i class="icon-folder-close"></i> <a href="{% url show_project project.id %}">{{ project }}</a><br/>
+			<a class="btn" href="{% url project_edit project.id %}">Edit</a>
+			<a class="btn btn-danger" id="delete_link" href="{% url project_delete project.id %}">Delete</a>
+		</li><br/>
+		{% endfor %}
+	</div>
+{% endblock %}

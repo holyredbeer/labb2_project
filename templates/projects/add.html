@@ -10,7 +10,7 @@
 	<h4>Create new project</h4>
 	<div id="project_area">
 	
-		<form action="{{project_add}}" method="POST"> {% csrf_token %}
+		<form action="{{project_add}}" id="new_proj" method="POST"> {% csrf_token %}
 			{{ form.as_p }}
 			<input type="submit" class="btn" value="Save" />
 		</form>

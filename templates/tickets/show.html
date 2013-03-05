@@ -1,0 +1,41 @@
+{% extends 'shared/base.html' %}
+{% load custom_filters %}
+
+{% block title %}
+	Showing project {{project}}
+{% endblock %}
+
+{% block content %}
+	
+	{% if error_message %}
+    	<p>{{ error_message }}</p>
+	{% else %}
+
+		<h4> {{ ticket }} ({{ project }})</h4>
+		<div id="project_area">
+
+			<p><strong>Description:<br/></strong>{{ ticket.description }}</p>
+
+			<p><strong>Start date:<br/></strong>{{ ticket.start_date|date:"Y-m-d" }}</p>
+
+			<p><strong>End date:<br/></strong>{{ ticket.end_date|date:"Y-m-d" }}</p>
+
+			<p><strong>Project admin:<br/></strong>{{ ticket.added_by_user }}</p>
+
+			<form action="{{project_add}}" id="new_proj" method="POST"> {% csrf_token %}
+				{{ form.as_p }}
+				<input type="submit" class="btn" value="Save" />
+			</form>
+
+			{% if ticket|ticket_owner:user or project|ownership:user %}
+				<p>
+					<a class="btn" href="{% url ticket_edit project_id=ticket.project_id ticket_id=ticket.id %}">Edit</a>
+				<a class="btn btn-danger" id="delete_link" href="{% url ticket_delete ticket_id=ticket.id %}">Delete</a>
+				</p>
+			{% endif %}
+
+		</div>
+		
+	{% endif %}
+
+{% endblock %}

@@ -1,14 +1,36 @@
 {% extends 'shared/base.html' %}
+{% load custom_filters %}
 
 {% block title %}
-	All projects
+	{{ headline }}
 {% endblock %}
 
 {% block content %}
 	<h4>{{ headline }}</h4>
 	<div id="project_area">
+		<h5>Show only projects where you are:</h5>
+		<div id="filter_div">
+			<a class="btn btn-info" href="{% url project_list_filtered 'admin' %}">Admin</a>
+			<a class="btn btn-success" href="{% url project_list_filtered 'member' %}">Member</a>
+			<a class="btn" href="{% url project_list_filtered 'nonmember' %}">Not member</a>
+		</div>
 
 		{% for project in projects %}
+			{% if project|ownership:user %}
+				<div class="users_project label label-info">
+					Admin
+				</div>
+			{% else %}
+				{% if project|membership:user %}
+					<div class="users_project label label-success">
+						Member
+					</div>
+				{% else %}
+					<div class="users_project label label-error">
+						Not member
+					</div>
+				{% endif %}
+			{% endif %}
 			<a href="{% url show_project project.id %}">{{ project }}</a><br/>
 		{% endfor %}
 	</div>
