@@ -11,8 +11,6 @@ $(document).ready(function() {
 	$( "#id_start_date" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
 	$( "#id_end_date" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
 
-	$('.errorlist').addClass('alert alert-error');
-
 	$('.menu_option').on('click', function() {
 		$(".menu_option").removeClass("active");
 		$(this).addClass("active");
@@ -21,7 +19,7 @@ $(document).ready(function() {
 	$(".menu_option").removeClass("active");
 
 	var url = window.location.pathname;
-	if (url == '/projects/') {
+	if ((url == '/projects/') || (url == '/projects/filter/admin') || url == '/projects/filter/member' || url == '/projects/filter/nonmember') {
 		$('#projects').addClass("active");
 	}
 	else if (url == '/projects/add') {

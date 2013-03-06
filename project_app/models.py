@@ -9,8 +9,8 @@ from django import forms
 class Project(models.Model):
 	name = models.CharField(max_length = 50)
 	description = models.TextField()
-	start_date = models.DateTimeField('Start date')
-	end_date = models.DateTimeField('End date')
+	start_date = models.DateField('Start date')
+	end_date = models.DateField('End date')
 	date_added = models.DateField()
 	date_updated = models.DateField()
 	added_by_user = models.ForeignKey(User)
@@ -33,8 +33,8 @@ class Status(models.Model):
 class Ticket(models.Model):
 	name = models.CharField(max_length = 50)
 	description = models.TextField()
-	start_date = models.DateTimeField('date result published')
-	end_date = models.DateTimeField('date result published')
+	start_date = models.DateField('date result published')
+	end_date = models.DateField('date result published')
 	date_added = models.DateField()
 	date_updated = models.DateField()
 	status = models.ForeignKey(Status, related_name="projects")

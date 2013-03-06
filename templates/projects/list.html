@@ -6,7 +6,8 @@
 {% endblock %}
 
 {% block content %}
-	<h4>{{ headline }}</h4>
+	<h4><li><i class="icon-folder-open"></i> {{ headline }}</li></h4>
+
 	<div id="project_area">
 		<h5>Show only projects where you are:</h5>
 		<div id="filter_div">
@@ -20,18 +21,20 @@
 				<div class="users_project label label-info">
 					Admin
 				</div>
+				<div class="link"><a href="{% url show_project project.id %}">{{ project }}</a><br/></div>
 			{% else %}
 				{% if project|membership:user %}
 					<div class="users_project label label-success">
 						Member
 					</div>
+					<div class="link"><a href="{% url show_project project.id %}">{{ project }}</a><br/></div>
 				{% else %}
 					<div class="users_project label label-error">
 						Not member
 					</div>
+					<div class="link">{{ project }}<br/></div>
 				{% endif %}
 			{% endif %}
-			<a href="{% url show_project project.id %}">{{ project }}</a><br/>
 		{% endfor %}
 	</div>
 {% endblock %}
